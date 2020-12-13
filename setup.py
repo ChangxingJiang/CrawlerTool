@@ -30,7 +30,7 @@ setuptools.setup(
     # project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
     # Required
-    version="0.0.2",
+    version="0.1.0",
 
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
@@ -89,7 +89,12 @@ setuptools.setup(
     #   py_modules=["my_module"],
     #
     # Required
-    packages=["crawlertool"],
+    packages=["crawlertool",
+              "crawlertool._abc",
+              "crawlertool.db",
+              "crawlertool.extract",
+              "crawlertool.io",
+              "crawlertool.static"],
     # packages=setuptools.find_packages(),
 
     # This field lists other packages that your project depends on to run.
