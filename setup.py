@@ -21,7 +21,7 @@ setuptools.setup(
     # specification here:
     # https://packaging.python.org/specifications/core-metadata/#name
     # Required
-    name="crawler_tool",
+    name="crawlertool",
 
     # Versions should comply with PEP 440:
     # https://www.python.org/dev/peps/pep-0440/
@@ -89,7 +89,7 @@ setuptools.setup(
     #   py_modules=["my_module"],
     #
     # Required
-    packages=["crawler_tool"],
+    packages=["crawlertool"],
     # packages=setuptools.find_packages(),
 
     # This field lists other packages that your project depends on to run.
