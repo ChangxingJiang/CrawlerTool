@@ -30,13 +30,13 @@ setuptools.setup(
     # project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
     # Required
-    version="0.1.3",
+    version="0.1.5",
 
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#summary
     # Optional
-    description="Spiders for Spiders",
+    description="Tools for Spiders",
 
     # This is an optional longer description of your project that represents
     # the body of text which users will see when they visit PyPI.
