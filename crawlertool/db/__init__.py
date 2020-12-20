@@ -1,1 +1,1 @@
-from .mysql import MySQL
+from ._mysql import MySQL
