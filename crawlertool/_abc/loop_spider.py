@@ -1,12 +1,13 @@
 import threading
 import time
 from abc import ABCMeta
+from typing import SupportsFloat
 
 from .single_spider import SingleSpider
 
 
 class LoopSpider(SingleSpider, threading.Thread, metaclass=ABCMeta):
-    def __init__(self, interval: int = 1):
+    def __init__(self, interval: SupportsFloat = 1):
         super().__init__()
         self.interval = interval
 
@@ -26,7 +27,7 @@ class LoopSpider(SingleSpider, threading.Thread, metaclass=ABCMeta):
             self._pause.wait()  # 等待暂停标记为True(当暂停标记变为True时则直接返回,为False时则阻塞直到为True后返回)
 
             self.running()  # 执行爬虫
-            time.sleep(self.interval)  # 执行延时
+            time.sleep(float(self.interval))  # 执行延时
 
             self.num += 1  # 运行计时器叠加
 
