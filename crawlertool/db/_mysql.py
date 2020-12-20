@@ -119,18 +119,18 @@ class MySQL(BaseMySQL):
 
 class DefaultMySQL(BaseMySQL):
     def create(self, sql: str):
-        print("[DEBUG]MySQL-CREATE")
+        print("[DEBUG]", "MySQL-CREATE")
 
     def insert(self, table: str, data: List[Dict]) -> bool:
-        print("[DEBUG]MySQL-INSERT")
+        print("[DEBUG]", "MySQL-INSERT")
         return True
 
     def select(self, table: str, columns: List[str], where: str = ""):
-        print("[DEBUG]MySQL-SELECT")
+        print("[DEBUG]", "MySQL-SELECT")
 
     def execute(self, sql: str) -> bool:
-        print("[DEBUG]MySQL-EXECUTE")
+        print("[DEBUG]", "MySQL-EXECUTE")
         return True
 
     def close(self):
-        print("[DEBUG]MySQL-CLOSE")
+        print("[DEBUG]", "MySQL-CLOSE")
