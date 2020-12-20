@@ -2,13 +2,37 @@
 MySQL相关工具类
 """
 
+from abc import ABCMeta
+from abc import abstractmethod
 from typing import Dict
 from typing import List
 
 import mysql.connector
 
 
-class MySQL:
+class BaseMySQL(metaclass=ABCMeta):
+    @abstractmethod
+    def create(self, sql: str):
+        """创建数据表到MySQL数据库"""
+
+    @abstractmethod
+    def insert(self, table: str, data: List[Dict]) -> bool:
+        """写入数据到MySQL数据库"""
+
+    @abstractmethod
+    def select(self, table: str, columns: List[str], where: str = ""):
+        """ SELECT读取MySQL数据库的数据"""
+
+    @abstractmethod
+    def execute(self, sql: str) -> bool:
+        """执行SQL语句"""
+
+    @abstractmethod
+    def close(self):
+        """关闭MySQL数据库的连接"""
+
+
+class MySQL(BaseMySQL):
     def __init__(self, host: str, database: str, user: str, password: str, use_unicode: bool = True):
         """MySQL连接对象构造器
 
@@ -19,7 +43,8 @@ class MySQL:
         :param use_unicode: MySQL连接的use_unicode选项(默认=True)
         """
         self.host, self.database, self.user, self.password = host, database, user, password
-        self.connect = mysql.connector.connect(host=host, user=user, password=password, database=database, use_unicode=use_unicode)
+        self.connect = mysql.connector.connect(host=host, user=user, password=password, database=database,
+                                               use_unicode=use_unicode)
         self.cursor = self.connect.cursor()
 
     def create(self, sql: str):
@@ -63,6 +88,10 @@ class MySQL:
             print("SQL语句执行异常:", sql)
             return False
 
+    def close(self):
+        """关闭MySQL数据库的连接"""
+        self.cursor.close()
+
     @staticmethod
     def sql_select(table: str, columns: List[str], where: str = ""):
         return "SELECT " + ",".join([column for column in columns]) + " FROM " + table + " " + where
@@ -84,7 +113,24 @@ class MySQL:
                     return "''"
 
         return ("INSERT INTO " + table + " (" + ",".join(["`" + column + "`" for column in data[0]]) + ") " +
-                "VALUES " + ",".join(["(" + ",".join([get_format_val(item, column) for column in columns]) + ")" for item in data]))
+                "VALUES " + ",".join(
+                    ["(" + ",".join([get_format_val(item, column) for column in columns]) + ")" for item in data]))
+
+
+class DefaultMySQL(BaseMySQL):
+    def create(self, sql: str):
+        print("[DEBUG]MySQL-CREATE")
+
+    def insert(self, table: str, data: List[Dict]) -> bool:
+        print("[DEBUG]MySQL-INSERT")
+        return True
+
+    def select(self, table: str, columns: List[str], where: str = ""):
+        print("[DEBUG]MySQL-SELECT")
+
+    def execute(self, sql: str) -> bool:
+        print("[DEBUG]MySQL-EXECUTE")
+        return True
 
     def close(self):
-        self.cursor.close()
+        print("[DEBUG]MySQL-CLOSE")
