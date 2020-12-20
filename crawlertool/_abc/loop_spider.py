@@ -1,6 +1,7 @@
 import threading
 import time
 from abc import ABCMeta
+from abc import abstractmethod
 from typing import SupportsFloat
 
 from .single_spider import SingleSpider
@@ -30,6 +31,10 @@ class LoopSpider(SingleSpider, threading.Thread, metaclass=ABCMeta):
             time.sleep(float(self.interval))  # 执行延时
 
             self.num += 1  # 运行计时器叠加
+
+    @abstractmethod
+    def write(self, **params):
+        """每次循环执行爬虫的结果处理(在self.running()中调用)"""
 
     def pause(self):
         self._pause.clear()  # 将暂停标记设置为False(表示正在暂停)
