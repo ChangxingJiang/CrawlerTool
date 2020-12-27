@@ -12,7 +12,7 @@ def do_request(url, params=None, **kwargs):
 
     try:
         if response := requests.get(url=url, params=params, **kwargs):
-            return response.content.decode(encoding="UTF-8", errors="ignore")
+            return response
     except requests.RequestException:
         return None
 
