@@ -4,7 +4,13 @@ import requests
 
 
 def do_request(url, method="get", **kwargs):
-    """执行HTTP请求：如果请求成功则返回请求结果；如果请求失败则返回None"""
+    """执行一次HTTP请求
+
+    如果请求成功则返回请求结果的response对象；如果请求失败（无论任何原因）均返回None
+
+    :param url: 请求的Url
+    :param method: 请求方法
+    """
 
     method = method.lower()
     kwargs.setdefault("timeout", 3)  # 将默认的请求时间设置为3秒
@@ -36,7 +42,16 @@ def do_request(url, method="get", **kwargs):
 
 
 def try_request(url, method="get", times=3, interval=10, **kwargs):
-    """尝试执行HTTP请求：尝试请求times次，每次请求之间间隔interval秒，如果最终请求失败则返回None"""
+    """尝试执行多次HTTP请求
+
+    尝试请求times次，每次请求之间间隔interval秒；
+    如果任何一次请求成功在则返回请求结果的response对象，如果每次请求都失败则返回None
+
+    :param url: 请求的Url
+    :param method: 请求方法
+    :param times: 尝试请求的次数
+    :param interval: 每次请求之间的间隔
+    """
 
     for _ in range(times):
         if response := do_request(url=url, method=method, **kwargs):
