@@ -3,10 +3,11 @@ import time
 import requests
 
 
-def do_request(url, headers=None, proxies=None, timeout=3, verify=True):
+def do_request(url, params=None, headers=None, proxies=None, timeout=3, verify=True):
     """执行HTTP请求：如果请求成功则返回请求结果；如果请求失败则返回None"""
     try:
-        if response := requests.get(url=url, headers=headers, proxies=proxies, timeout=timeout, verify=verify):
+        if response := requests.get(url=url, params=params, headers=headers, proxies=proxies,
+                                    timeout=timeout, verify=verify):
             return response.content.decode(encoding="UTF-8", errors="ignore")
     except requests.RequestException:
         return None
