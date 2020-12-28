@@ -122,7 +122,7 @@ class DefaultMySQL(BaseMySQL):
         print("[DEBUG]", "MySQL-CREATE")
 
     def insert(self, table: str, data: List[Dict]) -> bool:
-        print("[DEBUG]", "MySQL-INSERT")
+        print("[DEBUG]", "MySQL-INSERT", "NUM=" + str(len(data)))
         return True
 
     def select(self, table: str, columns: List[str], where: str = ""):
