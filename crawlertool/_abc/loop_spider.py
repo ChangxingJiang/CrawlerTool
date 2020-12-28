@@ -33,7 +33,7 @@ class LoopSpider(SingleSpider, threading.Thread, metaclass=ABCMeta):
             self.num += 1  # 运行计时器叠加
 
     @abstractmethod
-    def write(self, **params):
+    def write(self, data):
         """每次循环执行爬虫的结果处理(在self.running()中调用)"""
 
     def pause(self):
