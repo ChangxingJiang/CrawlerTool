@@ -1,4 +1,5 @@
 from abc import ABCMeta
+from abc import abstractmethod
 
 
 class BaseSpider(metaclass=ABCMeta):
@@ -9,3 +10,7 @@ class BaseSpider(metaclass=ABCMeta):
 
     def log(self, content: str):
         print(self.__class__.__name__, ":", content)
+
+    @abstractmethod
+    def running(self, **params):
+        """执行爬虫"""
