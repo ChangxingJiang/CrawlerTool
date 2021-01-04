@@ -30,7 +30,7 @@ setuptools.setup(
     # project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
     # Required
-    version="0.1.21",
+    version="0.1.22",
 
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
@@ -104,7 +104,12 @@ setuptools.setup(
     # For an analysis of "install_requires" vs pip's requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
     # Optional
-    install_requires=[],
+    install_requires=[
+        "pandas>=1.0.4", "sqlalchemy>=1.3.19",
+        "mysql-connector>=2.2.9",
+        "requests>=2.23.0",
+        "bs4>=0.0.1", "lxml>=4.5.0"
+    ],
 
     # To provide executable scripts, use entry points in preference to the
     # "scripts" keyword. Entry points provide cross-platform support and allow
