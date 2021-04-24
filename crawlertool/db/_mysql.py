@@ -84,7 +84,7 @@ class MySQL(BaseMySQL):
         try:
             self.cursor.execute(sql)
             return True
-        except mysql.connector.errors.ProgrammingError:
+        except mysql.connector.errors.ProgrammingError or mysql.connector.errors.IntegrityError:
             print("SQL语句执行异常:", sql)
             return False
 
@@ -115,7 +115,7 @@ class MySQL(BaseMySQL):
                 else:
                     return "''"
 
-        return ("INSERT INTO " + table + " (" + ",".join(["`" + column + "`" for column in data[0]]) + ") " +
+        return ("INSERT INTO `" + table + "` (" + ",".join(["`" + column + "`" for column in data[0]]) + ") " +
                 "VALUES " + ",".join(
                     ["(" + ",".join([get_format_val(item, column) for column in columns]) + ")" for item in data]))
 
