@@ -94,7 +94,7 @@ class MySQL(BaseMySQL):
 
     @staticmethod
     def sql_select(table: str, columns: List[str], where: str = ""):
-        return "SELECT " + ",".join([column for column in columns]) + " FROM " + table + " " + where
+        return "SELECT " + ",".join([column for column in columns]) + " FROM " + table + " WHERE " + where
 
     @staticmethod
     def sql_insert(table: str, data: List[Dict]):
